@@ -496,11 +496,23 @@
                                 <h3 class="footer_title">
                                         Contact Me
                                 </h3>
-                            <ul>
-                                <li><a href="#">marina.royzman@gmail.com
-                                    </a></li>
-                                
-                            </ul>
+                           <h1>Contact Us</h1>
+    <form id="contactForm" action="process.php" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="response"></div>
+
+    <script src="script.js"></script>
                             <div class="socail_links">
                                 <ul>
                                     <li>
