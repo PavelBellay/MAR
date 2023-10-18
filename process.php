@@ -1,15 +1,21 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $message = $_POST["message"];
+$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+$message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
 
-    // Add your email sending code here, or save the form data to a database.
-    // Remember to validate and sanitize the input data for security.
-
-    $response = "Thank you, $name! Your message has been received.";
-    echo $response;
-} else {
-    echo "Access denied.";
+// Validate the data (e.g., check if fields are not empty)
+if (empty($name) || empty($email) || empty($message)) {
+    // Handle validation errors, e.g., redirect to an error page
 }
-?>
+$to = 'marina.royzman@gmail.com';
+$subject = 'New Contact Form Submission';
+$headers = "From: $email\r\n";
+
+// Send the email
+mail($to, $subject, $message, $headers);
+
+if (mail($to, $subject, $message, $headers)) {
+    // Email sent successfully, you can redirect to a thank you page.
+} else {
+    // Handle email sending errors (e.g., display an error message).
+}
